@@ -30,6 +30,22 @@ public class PhoneSwitchBoardRepositoryImpl implements PhoneSwitchBoardRepositor
         return new ArrayList<>(this.contacts);
     }
 
+    @Override
+    public void removeContact(String contactName) {
+        if (elementExists(contacts, contactName)) {
+            contacts.remove(getContact(contactName));
+        }
+    }
+
+    private Contact getContact(String contactName) {
+        for (Contact contact : contacts) {
+            if (contact.getFirstName().equals(contactName)) {
+                return contact;
+            }
+        }
+        return null;
+    }
+
     private <T extends Namable> boolean elementExists(List<T> list, String name) {
         for (T element : list) {
             if (element.getFirstName().equals(name)) {

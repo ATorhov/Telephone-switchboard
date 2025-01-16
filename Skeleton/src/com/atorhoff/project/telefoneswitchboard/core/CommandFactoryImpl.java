@@ -1,6 +1,7 @@
 package com.atorhoff.project.telefoneswitchboard.core;
 
 import com.atorhoff.project.telefoneswitchboard.commands.AddContactCommand;
+import com.atorhoff.project.telefoneswitchboard.commands.RemoveContactCommand;
 import com.atorhoff.project.telefoneswitchboard.commands.ShowAllContactsCommand;
 import com.atorhoff.project.telefoneswitchboard.commands.contracts.Command;
 import com.atorhoff.project.telefoneswitchboard.commands.enums.CommandType;
@@ -17,6 +18,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new AddContactCommand(repository);
             case "SHOWALLCONTACTS":
                 return new ShowAllContactsCommand(repository);
+            case "REMOVECONTACT":
+                return new RemoveContactCommand(repository);
             default:
                 throw new IllegalArgumentException("Unknown command: " + commandName);
         }

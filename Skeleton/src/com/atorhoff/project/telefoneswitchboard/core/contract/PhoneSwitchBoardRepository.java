@@ -8,4 +8,6 @@ public interface PhoneSwitchBoardRepository {
     void addContact(String name, String phone);
     boolean personExists(String name);
     List<Contact> getContacts();
+
+    void removeContact(String contactName);
 }
