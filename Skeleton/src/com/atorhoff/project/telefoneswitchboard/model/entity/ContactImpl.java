@@ -15,6 +15,7 @@ public class ContactImpl implements Contact {
     private static final int EMAIL_MIN_LENGTH = 5;
     private static final int EMAIL_MAX_LENGTH = 25;
 
+    private int id;
     private String firstName;
     private String lastName;
     private String company;
@@ -24,14 +25,16 @@ public class ContactImpl implements Contact {
     private final List<String> notes;
     private final List<Contact> contacts;
 
-    public ContactImpl(String firstName, String phone) {
+    public ContactImpl(int id, String firstName, String phone) {
+        this.id = id;
         setFirstName(firstName);
         setPhone(phone);
         contacts = new ArrayList<>();
         notes = new ArrayList<>();
     }
 
-    public ContactImpl(String firstName, String lastName, String company, String phone, String businessPhone, String email) {
+    public ContactImpl(int id, String firstName, String lastName, String company, String phone, String businessPhone, String email) {
+        this.id = id;
         setFirstName(firstName);
         setLastName(lastName);
         setCompany(company);
@@ -40,6 +43,10 @@ public class ContactImpl implements Contact {
         setEmail(email);
         contacts = new ArrayList<>();
         notes = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -128,7 +135,8 @@ public class ContactImpl implements Contact {
     @Override
     public String toString() {
         return "Contacts: {" +
-                "First name='" + firstName + '\'' +
+                "ID "+getId()+
+                " First name='" + firstName + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

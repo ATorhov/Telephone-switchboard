@@ -10,14 +10,16 @@ import java.util.List;
 
 public class PhoneSwitchBoardRepositoryImpl implements PhoneSwitchBoardRepository {
     private final List<Contact> contacts;
+    private static int nextId;
 
 
     public PhoneSwitchBoardRepositoryImpl() {
+        nextId = 0;
         contacts = new ArrayList<>();
     }
 
     public void addContact(String name, String phone) {
-        this.contacts.add(new ContactImpl(name, phone));
+        this.contacts.add(new ContactImpl(++nextId, name, phone));
     }
 
     @Override
@@ -37,7 +39,7 @@ public class PhoneSwitchBoardRepositoryImpl implements PhoneSwitchBoardRepositor
         }
     }
 
-    private Contact getContact(String contactName) {
+    public Contact getContact(String contactName) {
         for (Contact contact : contacts) {
             if (contact.getFirstName().equals(contactName)) {
                 return contact;

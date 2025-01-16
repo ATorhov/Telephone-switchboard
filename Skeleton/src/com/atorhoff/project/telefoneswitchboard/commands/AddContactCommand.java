@@ -10,7 +10,7 @@ public class AddContactCommand implements Command {
 
     public static final int EXPECTED_PARAMETERS = 3;
     private static final String CONTACT_EXISTS_MESSAGE = "Contact '%s' already exists";
-    private static final String CONTACT_CREATED = "Contact '%s' created";
+    private static final String CONTACT_CREATED = "Contact '%s' with id '%d' created";
 
     private final PhoneSwitchBoardRepository repository;
 
@@ -31,7 +31,8 @@ public class AddContactCommand implements Command {
             throw new IllegalArgumentException(String.format(CONTACT_EXISTS_MESSAGE, contactName));
         };
         repository.addContact(contactName, contactNumber);
-        return String.format(CONTACT_CREATED, contactName);
+        int id = (repository.getContact(contactName)).getId();
+        return String.format(CONTACT_CREATED, contactName, id);
     }
 
 }
